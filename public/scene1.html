@@ -12,6 +12,14 @@
     <div class="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">What will you do next?</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Option 1</button>
+              <button onclick="chooseOption('option 2')">Option 2</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -31,9 +39,22 @@
             currentDialogue++;
             document.getElementById('dialogue').textContent = dialogues[currentDialogue];
           } else {
-            document.getElementById('dialogue').textContent = "End of dialogue!";
+            document.getElementById('dialogue').textContent = "";
             document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+            showQuestionPrompt();
           }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option == "option 1") {
+
+            } else {
+                
+            }
         }
     </script>
 </body>

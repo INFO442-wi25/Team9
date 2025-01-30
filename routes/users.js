@@ -1,11 +1,11 @@
 //  YALL CAN IGNORE THIS BC WE PROBABLY WONT GET TO USER STUFF 
 
-// import express from 'express';
-// var router = express.Router();
+import express from 'express';
+var router = express.Router();
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
 
-// export default router;
+export default router;
