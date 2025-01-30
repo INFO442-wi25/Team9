@@ -24,6 +24,10 @@ body.backgroundLivingRoom {
   background-position: center;
 }
 
+body.backgroundAirport {
+  background-repeat: no-repeat;
+}
+
 .grandpa-image {
   position: absolute;
   bottom: 10%; 
