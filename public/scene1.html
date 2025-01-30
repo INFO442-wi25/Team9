@@ -14,10 +14,10 @@
         <button id="next-btn" onclick="nextDialogue()">Next</button>
 
         <div id="question-container" style="display: none;">
-            <p id="question-text">Go and try to find the hidden treasure?</p>
+            <p id="question-text">Checkpoint 1</p>
             <div class="button-group">
-              <button onclick="chooseOption('option 1')">Yes</button>
-              <button onclick="chooseOption('option 2')">No</button>
+              <button onclick="chooseOption('option 1')">Continue Game</button>
+              <button onclick="chooseOption('option 2')">Replay</button>
             </div>
         </div>
     </div>
@@ -26,12 +26,23 @@
 
     <script>
         let dialogues = [
+            "Game Instruction: Remember to scroll down for longer pieces of dialogue before hitting the next button!",
+            "[Start of Flashback]",
             "Warm light fills the living room as Ale sits with his grandpa. The distant murmur of a news story about some treasure plays from the television. His grandpa turns to him, his mood seemingly shifted.",
             "Grandpa: Ale, have you ever heard of the story of The Treasure of the Llanganates?",
             "Ale: I've overheard some people talking about it, but not the full story.",
             "Grandpa: It's a place where the mountains and the jungle meet, a maze of rivers, cliffs, and mist. Somewhere in there, the Incas hid a treasure so great that the Spaniards could never find it.",
-            "Grandpa: more dialogue",
-            "Grandpa: last piece of dialogue"
+            "Ale: Whoa, what's the story behind the treasure?",
+            "Grandpa: In the early 1500s, when the Spanish arrived in South America, they found a land rich in culture and promise. The Incas, who ruled this vast territory, had two great leaders. In the south, a king governed from the heart of what is now Peru. In the north, Atahualpa ruled the Kingdom of Quito, a region that stretched across present-day Ecuador. While the Spanish admired the wealth and structure of the Inca Empire, they were focused on one thing- gold.",
+            "Grandpa: Atahualpa’s northern kingdom had a powerful ally—his stepbrother, Rumiñawi. Known for his strategic intelligence, Rumiñawi bravely defended Quito, frustrating Spanish efforts to claim its riches. But the Spaniards, led by Francisco Pizarro and his men, were determined. When direct conquest failed, they resorted to cunning and sly tactics. They invited Atahualpa to meet them in Peru under the disguise of diplomacy. Trusting their word, Atahualpa and three of his most trusted men embarked on the long journey south.",
+            "Grandpa: When they arrived, the betrayal was swift and immediate. The Spaniards captured him and his men and demanded a ransom for his release. “Fill a room with gold as high as a man can reach,” they said, “and we will set you free.” For the Incas, gold was a symbol of beauty and worship, not of greed, as they did not recognize its true value. Atahualpa agreed to their demand without hesitation and sent two of his men back to Quito, instructing Rumiñawi to gather the gold.",
+            "Grandpa: Rumiñawi, loyal to his stepbrother, immediately began the task. Gold was collected from temples, villages, and anywhere else he could find it. Statues and sacred artifacts were loaded onto caravans headed towards the south. But Atahualpa’s trust in the Spaniard’s was misled. The  one remaining man, who listened closely to the Spaniards’ conversations, overheard their true intentions: “Once Rumiñawi brings the gold, we’ll kill him, head to Quito, and try and seize more.”",
+            "Grandpa: The servants brought this news to Atahualpa, who acted quickly. “Go to Quito and meet with Rumiñawi,” he instructed. “Tell him to stop and hide whatever treasure he has gathered where they’ll never find it. Tell him that the Spaniard’s plan to kill us after you’ve handed over the gold”",
+            "Grandpa: Atahualpa’s servant rushed to Quito as quickly as he could and delivered the message to Rumiñawi just in time. Rumiñawi called off the caravans and turned his efforts to hiding the gold. With his men, he ventured deep into the Llanganates—a remote and forbidding range of mountains and jungle in Ecuador. The journey was long and grueling, with steep slopes, unpredictable weather, and thick vegetation. It was a place few had ever explored, however, Rumiñawi knew the path and that its natural defenses would protect the treasure better than any fortress.",
+            "Grandpa: In the depths of the Llanganates, Rumiñawi chose a secret place. There, the treasure was buried—gold enough to fill not just one room, but several. It was there that it’s said that Rumiñawi placed a curse on the treasure so that no one could find it. Having fulfilled Atahualpa’s final request, Rumiñawi returned to Quito to continue resisting the Spanish. Meanwhile, the Spaniard’s kept pressing Atahualpa for the gold and despite the promises made to him, the Spaniards executed him.",
+            "Grandpa: For centuries, the treasure of the Llanganates has remained hidden. Explorers from Europe and beyond have attempted to find it. Expeditions in the 20th century brought modern tools and transportation, but the Llanganates remained impenetrable. Those who entered say that they experienced sudden storms, dense fog, and disorienting terrain. Some returned empty-handed, while others were never seen again.",
+            "Grandpa: And that Ale, is the story of El Tesoro De los Llanganates.",
+            "[End of Flashback]"
         ];
     
         let currentDialogue = 0;
@@ -48,7 +59,7 @@
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
                 // now show grandpa
-                if (currentDialogue === 1) {
+                if (currentDialogue === 3) {
                     document.getElementById('grandpa-image').style.display = 'block';
                 }
             } else {
@@ -64,9 +75,9 @@
 
         function chooseOption(option) {
             if (option == "option 1") {
-
+                window.location.href = 'airportScene.html';
             } else {
-
+                window.location.href = 'scene1.html';
             }
         }
     </script>

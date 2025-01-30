@@ -82,7 +82,7 @@ body.backgroundLivingRoom {
   background-color:rgba(215, 178, 127, 1);
   border: 15px solid rgba(95, 65, 0, 1);
   color: black;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   font-size: 30px;
   display: flex;
@@ -96,6 +96,7 @@ body.backgroundLivingRoom {
 }
 
 #next-btn {
+  align-self: flex-end;
   background-color: grey;
   color: black;
   border: 2px solid black;
@@ -107,4 +108,11 @@ body.backgroundLivingRoom {
 
 #next-btn:hover {
   background-color: lightgray;
+}
+
+#dialogue {
+  max-height: 70%;
+  overflow-y: auto;
+  text-align: left;
+  margin-bottom: 10px;
 }
