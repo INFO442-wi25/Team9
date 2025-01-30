@@ -8,41 +8,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 
-<body class="grandpa">
+<body class="backgroundLivingRoom">
     <div class="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
 
         <div id="question-container" style="display: none;">
-            <p id="question-text">What will you do next?</p>
+            <p id="question-text">Go and try to find the hidden treasure?</p>
             <div class="button-group">
-              <button onclick="chooseOption('option 1')">Option 1</button>
-              <button onclick="chooseOption('option 2')">Option 2</button>
+              <button onclick="chooseOption('option 1')">Yes</button>
+              <button onclick="chooseOption('option 2')">No</button>
             </div>
         </div>
     </div>
 
+    <img id="grandpa-image" src="/images/grandpa.png" alt="Grandpa" class="grandpa-image">
+
     <script>
         let dialogues = [
-          "Grandpa: Do you know about the Llanganates Ale? It’s a place where the mountains and the jungle meet, a maze of rivers, cliffs, and mist. Somewhere in there, the Incas hid a treasure so great that the Spaniards could never find it.",
-          "Grandda: This is the second part of dialogue.",
-          "Grandpa: Here's another piece of dialogue."
+            "Warm light fills the living room as Ale sits with his grandpa. The distant murmur of a news story about some treasure plays from the television. His grandpa turns to him, his mood seemingly shifted.",
+            "Grandpa: Ale, have you ever heard of the story of The Treasure of the Llanganates?",
+            "Ale: I've overheard some people talking about it, but not the full story.",
+            "Grandpa: It's a place where the mountains and the jungle meet, a maze of rivers, cliffs, and mist. Somewhere in there, the Incas hid a treasure so great that the Spaniards could never find it.",
+            "Grandpa: more dialogue",
+            "Grandpa: last piece of dialogue"
         ];
     
         let currentDialogue = 0;
+
+        // Hide Grandpa initially
+        document.getElementById('grandpa-image').style.display = 'none';
     
         // Set the initial dialogue
         document.getElementById('dialogue').textContent = dialogues[currentDialogue];
         
         function nextDialogue() {
-          if (currentDialogue < dialogues.length - 1) {
-            currentDialogue++;
-            document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-          } else {
-            document.getElementById('dialogue').textContent = "";
-            document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
-            showQuestionPrompt();
-          }
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                // now show grandpa
+                if (currentDialogue === 1) {
+                    document.getElementById('grandpa-image').style.display = 'block';
+                }
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
         }
 
         function showQuestionPrompt() {
@@ -53,7 +66,7 @@
             if (option == "option 1") {
 
             } else {
-                
+
             }
         }
     </script>
