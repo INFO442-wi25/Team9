@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Town Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Checkpoint 1</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Continue Game</button>
+              <button onclick="chooseOption('option 2')">Replay</button>
+            </div>
+        </div>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <!-- TO DO: ADD IMAGE OF TOWN PERSON  -->
+
+    <script>
+        let dialogues = [
+            "Start dialogue",
+            "End of dialogue"
+        ];
+    
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                // now show town person
+                if (currentDialogue === 3) {
+                    document.getElementById('townPerson-image').style.display = 'block';
+                }
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option == "option 1") {
+                window.location.href = '';
+            } else {
+                window.location.href = '';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

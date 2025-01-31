@@ -30,16 +30,7 @@ body.backgroundAirport {
   background-position: center;
 }
 
-.grandpa-image {
-  position: absolute;
-  bottom: 10%; 
-  left: 5%;
-  width: 37%;
-  z-index: 0;
-  /* display: none; */
-}
-
-.friendAirport-image {
+.characterLeftSide {
   position: absolute;
   bottom: 10%; 
   left: 5%;
