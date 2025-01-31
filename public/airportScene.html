@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundAirport">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Bring Carla along your journey?</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Yes</button>
+              <button onclick="chooseOption('option 2')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TO DO: Add image of friend -->
+
+    <script>
+        let dialogues = [
+            "Grandpa’s stories always stuck with Ale, but he never thought he'd take them seriously. And yet, here he is. Flights booked. The Llanganates and its treasures waiting.",
+            "He waits by the airport, looking around to pass the time.",
+            "He make eye contact with someone a few feet away and she awkwardly flashes a smile before walking over.",
+            "Carla: Hey! I'm Carla! Are you heading to Ecuador too?",
+            "Ale: Yea",
+            "Carla: Are you okay? You seem a bit worried. Something on your mind?",
+            "Ale: Oh, uh I'm just a bit worried about traveling to Ecuador. I've never been and don't want to run into any problems when i get there.",
+            "Carla: Oh, that makes sense. What are you traveling to Ecuador for?",
+            "His hesitance to tell the truth causes an awkward pause between them. Doubts cross his mind as he figures out an acceptable reply. Would she think this is weird? What if she thinks I’m crazy? Carla seems to sense his apprehension and gives him an encoragung smile. It's small, almost unnoticable unless your activity seeking for it.",
+            "Ale: I’m on my way to hopefully find the Treasure of the Llanganates.",
+            "Carla: Are you talking about that old legend?",
+            "Ale: Yea",
+            "Carla: You're going alone?",
+            "Ale: Well yea, it's not like there's a tour guide to the Treasure of the Llanganates I can bring along with me.",
+            "Carla contemplates something on her mind and he watches, interested in the way her face speaks for her.",
+            "Carla: I’m from Ecuador and I’ve always been curious about that legend since I was a child. I’ve actually done a lot of research about it. I’m going to Ecuador to visit my home, do you mind if  I join you on your journey?"
+        ];
+    
+        let currentDialogue = 0;
+
+        // Hide friend initially
+        // document.getElementById('friendAirport-image').style.display = 'none';
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                // now show friend
+                if (currentDialogue === 2) {
+                    document.getElementById('grandpa-image').style.display = 'block';
+                }
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+        
+        function chooseOption(option) {
+            if (option == "option 1") {
+                const hasFriend = sessionStorage.setItem('hasFriend', 'true');
+                // to reference later when im checking friend status
+                // const hasFriend = sessionStorage.getItem('hasFriend');
+                // console.log(hasFriend); // Output: "true"
+                // sessionStorage.removeItem('hasFriend');
+                window.location.href = 'cityScene.html';
+            } else {
+                const hasFriend = sessionStorage.setItem('hasFriend', 'false');
+                window.location.href = 'endScene.html';
+            }
+        }
+    </script>
+</body>
+
+</html>
