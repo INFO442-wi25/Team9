@@ -22,13 +22,13 @@
         </div>
     </div>
 
-    <!-- TO DO: Add image of friend -->
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="friendAirport-image">
 
     <script>
         let dialogues = [
             "Grandpa’s stories always stuck with Ale, but he never thought he'd take them seriously. And yet, here he is. Flights booked. The Llanganates and its treasures waiting.",
             "He waits by the airport, looking around to pass the time.",
-            "He make eye contact with someone a few feet away and she awkwardly flashes a smile before walking over.",
+            "He makes eye contact with someone a few feet away and she awkwardly flashes a smile before walking over.",
             "Carla: Hey! I'm Carla! Are you heading to Ecuador too?",
             "Ale: Yea",
             "Carla: Are you okay? You seem a bit worried. Something on your mind?",
@@ -47,7 +47,7 @@
         let currentDialogue = 0;
 
         // Hide friend initially
-        // document.getElementById('friendAirport-image').style.display = 'none';
+        document.getElementById('friendAirport-image').style.display = 'none';
     
         // Set the initial dialogue
         document.getElementById('dialogue').textContent = dialogues[currentDialogue];
@@ -58,8 +58,8 @@
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
                 // now show friend
-                if (currentDialogue === 2) {
-                    document.getElementById('grandpa-image').style.display = 'block';
+                if (currentDialogue === 3) {
+                    document.getElementById('friendAirport-image').style.display = 'block';
                 }
             } else {
                 document.getElementById('dialogue').textContent = "";
@@ -82,7 +82,7 @@
                 window.location.href = 'cityScene.html';
             } else {
                 const hasFriend = sessionStorage.setItem('hasFriend', 'false');
-                window.location.href = 'endScene.html';
+                window.location.href = 'cityScene.html';
             }
         }
     </script>
