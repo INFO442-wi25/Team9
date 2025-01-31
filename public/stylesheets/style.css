@@ -28,6 +28,10 @@ body.backgroundAirport {
   background-repeat: no-repeat;
 }
 
+body.backgroundCity {
+  background-repeat: no-repeat;
+}
+
 .grandpa-image {
   position: absolute;
   bottom: 10%; 
