@@ -25,14 +25,12 @@ body.backgroundLivingRoom {
 }
 
 body.backgroundAirport {
+  background-image: url('/images/airport.png');
   background-repeat: no-repeat;
+  background-position: center;
 }
 
-body.backgroundCity {
-  background-repeat: no-repeat;
-}
-
-.grandpa-image {
+.characterLeftSide {
   position: absolute;
   bottom: 10%; 
   left: 5%;
