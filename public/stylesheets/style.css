@@ -122,3 +122,7 @@ body.backgroundAirport {
   text-align: left;
   margin-bottom: 10px;
 }
+
+body.backgroundBlack {
+  background-color: white;
+}
