@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totem Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Kill the deer?</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Yes</button>
+              <button onclick="chooseOption('option 2')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+
+        let dialoguesWithCarla = [
+            "Carla: Sooo, how are we supposed to go about finding this? The only thing the villager told us was that its somewhere in the jungle and that we need to respect the jungle. Which is sooo helpful.",
+            "Ale: I dont really know. Just keep an eye out for anything unusual?",
+            "Carla: So your plan is to walk around aimlessly till we see something suspicious?",
+            "Ale: Well, do you have a better idea?",
+            "Carla: For one, we need to find shelter and maybe food? I don’t think the amount of food we packed with us is going to be enough if we’re also going to be going on this side quest.",
+            "He plops down on a nearby smooth rock and reevaluates their game plan. What Carla said is true. This mission could potentially use up all their food before they even begin their trek to the temple of treasure.",
+            "Carla plops down next to him and gives him a side glance.",
+            "Carla: I didn’t mean to be rude, sorry.",
+            "He rubs his head in frustration and looks up at the sky to take a calming breath. He looks back down to see Carla staring at him. He’s not sure if it was the deep breath he took or the uncertainty on Carla’s face that caused him to pacify his anger.",
+            "Ale: You don’t need to apologize. You brought up a good point. I’m just frustrated I didn’t plan for this better.",
+            "Carla: WE didn’t plan for it better. Not YOU.",
+            "He smiles and stands up from the rock, reaching down a hand to pull Carla up.",
+            "Ale: Come on, we should get going before the sun sets. I’m sure we’ll-",
+            "A noise stops him in his sentence and he whips around to stare at the direction it came from. They stand frozen, the crunch of branches getting closer and closer. He doesn’t know why he doesn’t run, feet planted to the ground. Maybe it’s his curiosity or maybe it’s because Carla doesn't move either.",
+            "He holds his breath and waits, bracing himself for whatever.",
+            "As suddenly as the noise had begun, a deer popped out from behind the trees. The deer stares directly at him and he holds the connection. It decides to turn around and walk away. Oddly enough, he has the urge to follow it. Careful with his steps to not scare it off, he quietly follows it. He senses Carla following behind him and mentally notes to explain to her later the weird tug he feels in his chest.",
+            "They don’t go far before the deer stops and noses at something on the ground. His heart drops out of his chest when he sees a totem half buried in the ground. He crouches down next to the deer and carefully pulls the totem out of the ground. Clutching onto it tightly he turns his attention to the deer that’s still beside him.",
+            "Food. They need more food. This deer could be more than enough meat for him and Carla. He glances down at the totem the deer led him to, then back up into its eyes.",
+            "The words of the villager cross his mind. Respect the jungle, or it’ll turn on you.",
+        ];
+    
+        let dialogues = dialoguesWithCarla;
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                // now show friend
+                if (currentDialogue === 0) {
+                    if (hasFriend === true) {
+                        document.getElementById('friendAirport-image').style.display = 'block';
+                    }
+                }
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option == "option 1") {
+                const hasTotem = sessionStorage.setItem('hasTotem', 'false');
+                window.location.href = 'totemSceneHasFriendKill.html';
+            } else {
+                const hasTotem = sessionStorage.setItem('hasTotem', 'true');
+                window.location.href = 'totemSceneHasFriendDontKill.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

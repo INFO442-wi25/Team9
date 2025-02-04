@@ -99,7 +99,11 @@
 
         function chooseOption(option) {
             if (option == "option 1") {
-                window.location.href = 'totemScene.html';
+                if (hasFriend === true) {
+                    window.location.href = 'totemSceneHasFriend.html';
+                } else {
+                    window.location.href = 'totemSceneNoFriend.html';
+                }
             } else {
                 window.location.href = 'trapScene.html';
             }

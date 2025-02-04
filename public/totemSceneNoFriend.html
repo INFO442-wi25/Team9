@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totem Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Kill the deer?</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Yes</button>
+              <button onclick="chooseOption('option 2')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+
+        let dialoguesAlone = [
+            "How is he supposed to go about finding this? The only thing the villager told him was that its somewhere in the jungle and that he needs to respect the jungle. Which is sooo helpful.",
+            "Racking his brain, he realizes he really doesn't know what to do. Maybe he should just keep an eye out for anything unusual?",
+            "Walking around aimlessly till he sees something suspicious doesn't seem that smart.",
+            "Does he have a better idea?",
+            "For one, he needs to find shelter and maybe food? He doesn't think the amount of food he packed with him is going to be enough if he's also going to be going on this side quest.",
+            "He plops down on a nearby smooth rock and reevaluates his game plan. This mission could potentially use up all his food before he even begins his trek to the temple of treasure.",
+            "He takes in his environment and glances around him.",
+            "Anxiety creeps in and he begins nervously bouncing his feet.",
+            "He rubs his head in frustration and looks up at the sky to take a calming breath. He looks back down to see the trees staring at him. He’s not sure if it was the deep breath he took or the peace of the trees that caused him to pacify his anger.",
+            "He apologizes to himself for going on this dangerous mission.",
+            "It's okay we got this, he thinks to himself.",
+            "He smiles and stands up from the rock.",
+            "He should get going before the sun sets.",
+            "A noise stops him in his movement and he whips around to stare at the direction it came from. He stands frozen, the crunch of branches getting closer and closer. He doesn’t know why he doesn’t run, feet planted to the ground. Maybe it’s his curiosity.",
+            "He holds his breath and waits, bracing himself for whatever.",
+            "As suddenly as the noise had begun, a deer popped out from behind the trees. The deer stares directly at him and he holds the connection. It decides to turn around and walk away. Oddly enough, he has the urge to follow it. Careful with his steps to not scare it off, he quietly follows it.",
+            "He doesn't go far before the deer stops and noses at something on the ground. His heart drops out of his chest when he sees a totem half buried in the ground. He crouches down next to the deer and carefully pulls the totem out of the ground. Clutching onto it tightly he turns his attention to the deer that’s still beside him.",
+            "Food. They need more food. This deer could be more than enough meat for him and Carla. He glances down at the totem the deer led him to, then back up into its eyes.",
+            "The words of the villager cross his mind. Respect the jungle, or it’ll turn on you.",
+        ];
+
+        document.getElementById('friendAirport-image').style.display = 'none';
+    
+        let dialogues = dialoguesAlone;
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option == "option 1") {
+                const hasTotem = sessionStorage.setItem('hasTotem', 'false');
+                window.location.href = 'totemSceneNoFriendKill.html';
+            } else {
+                const hasTotem = sessionStorage.setItem('hasTotem', 'true');
+                window.location.href = 'totemSceneNoFriendDontKill.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

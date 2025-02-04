@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totem Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+        
+        let dialoguesAloneKill = [
+            "He pounces for the deer, grabbing at its neck to drag it down. He miscalculates the force it’d take and topples over from the excessive force. In the process, the totem slips out his hand. He reaches for it, but the deer recovers swiftly, snatching it with its mouth. Before Ale can get back on his feet, it's already darting into the forest. He curses and turns back to see the trees judging him.",
+            "He brushes it off, convincing himself the story the villager told him was a silly lie. He’ll find another way."
+        ];
+
+        document.getElementById('friendAirport-image').style.display = 'none';
+    
+        let dialogues = dialoguesAloneKill;
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                window.location.href = 'trapScene.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
