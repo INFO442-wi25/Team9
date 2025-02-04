@@ -14,7 +14,7 @@
         <button id="next-btn" onclick="nextDialogue()">Next</button>
 
         <div id="question-container" style="display: none;">
-            <p id="question-text">Stay and talk to people in town?</p>
+            <p id="question-text">Go on side quest to retreive totem?</p>
             <div class="button-group">
               <button onclick="chooseOption('option 1')">Yes</button>
               <button onclick="chooseOption('option 2')">No</button>
@@ -40,13 +40,33 @@
             "Villager: An artifact. A guide, they say. It’s been lost for years, but according to legend, it helps travelers gain access to something deeper in the Llanganates. Nobody knows exactly what, but without it, you’re as good as dead.",
             "Ale: Do you know where it is?",
             "Villager: They say it’s hidden in the jungle but no one knows where exactly. The path is steep, and the totem is hard to find. Many have gone looking for it and come back with nothing or they haven’t come back themselves. Be careful. Some believe it tests those who try to claim it. Respect the jungle, or it’ll turn on you.",
-            "Villager: Remember: the Llanganates don’t give up their secrets easily.",
-            "The villager turns to leave"
+            "Villager: Remember, the Llanganates don’t give up their secrets easily.",
+            "The villager turns to leave so quickly he barely is able to get out a thank you.",
+            "Ale looks at Carla and quirks a brow.",
+            "Ale: So? You up for a side quest?",
+            "Carla: You believe what they say? They could be tricking us.",
+            "Ale: You think so?",
+            "Carla: I'm not sure. I'll let you decide."
         ];
         
         let dialoguesAlone = [
-            ""
+            "Ale: Good afternoon, sir. We’re looking for information about the Llanganates. Have you heard of it?",
+            "Villager: The Llanganates? You must have a lot of courage or not enough sense. The mountains aren’t known for welcoming everyone.",
+            "Ale: We’ve come a long way. We just want to learn what we can.",
+            "Villager: People have been chasing that treasure for generations. Some are after gold; others want the story. What are you looking for?",
+            "Ale: To be honest, both of them.",
+            "The villager looks them up and down in Skeptisim. He doesn’t know what to do other than try to put on his most trustworthy face. He probably ends up making a stupid face because the villager cracks a smile and releases a heavy sigh.",
+            "Villager: Youth and their curious souls. If you really want to pursue this journey then you’ll need the totem.",
+            "Ale: What’s the totem?",
+            "Villager: An artifact. A guide, they say. It’s been lost for years, but according to legend, it helps travelers gain access to something deeper in the Llanganates. Nobody knows exactly what, but without it, you’re as good as dead.",
+            "Ale: Do you know where it is?",
+            "Villager: They say it’s hidden in the jungle but no one knows where exactly. The path is steep, and the totem is hard to find. Many have gone looking for it and come back with nothing or they haven’t come back themselves. Be careful. Some believe it tests those who try to claim it. Respect the jungle, or it’ll turn on you.",
+            "Villager: Remember, the Llanganates don’t give up their secrets easily.",
+            "The villager turns to leave so quickly he barely is able to get out a thank you."
         ];
+
+        document.getElementById('friendAirport-image').style.display = 'none';
+        document.getElementById('villager-image').style.display = 'block';
     
         let dialogues = hasFriend ? dialoguesWithCarla : dialoguesAlone;
         let currentDialogue = 0;
@@ -59,9 +79,12 @@
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
-                // now show town person
-                if (currentDialogue === 0) {
-                    document.getElementById('villager-image').style.display = 'block';
+                // now show friend
+                if (currentDialogue === 12) {
+                    document.getElementById('villager-image').style.display = 'none';
+                    if (hasFriend === true) {
+                        document.getElementById('friendAirport-image').style.display = 'block';
+                    }
                 }
             } else {
                 document.getElementById('dialogue').textContent = "";
@@ -76,9 +99,9 @@
 
         function chooseOption(option) {
             if (option == "option 1") {
-                window.location.href = '';
+                window.location.href = 'totemScene.html';
             } else {
-                window.location.href = '';
+                window.location.href = 'trapScene.html';
             }
         }
     </script>
