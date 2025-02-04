@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundCity">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="choice-container" style="display: none;">
+            <p>What do you want to do?</p>
+            <div class="button-group">
+                <button onclick="chooseOption('meetProfessor')">Meet the professor</button>
+                <button onclick="chooseOption('continueJourney')">Skip and continue the journey</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+
+
+        let dialoguesWithCarla = [
+            "[Lands in Ecuador]",
+            "Ale steps out of the airport, the humid Ecuadorian air hitting them immediately.",
+            "Carla: Welcome to Quito! It’s a beautiful city, full of history. Where do you want to go first?",
+            "Ale: I was thinking of checking out some of the historical sites first. Maybe someone around here knows more about the legend.",
+            "Carla: That’s a great idea! I actually know a professor at a local university who has studied the Llanganates.",
+            "Ale: Really? That could be useful! But I'm not sure how much that would delay our search."
+        ];
+
+        let dialoguesAlone = [
+            "[Lands in Ecuador]",
+            "Ale steps out of the airport, the humid Ecuadorian air hitting them immediately.",
+            "They look around, unsure of where to go first.",
+            "They remember reading about articles of Llanganates from a professor that specializes in History and Archaeology when researching about it online.",
+            "Ale ponders if this could be a good place to start but is worried if this could delay the search for the treasure."
+        ];
+
+        let dialogues = hasFriend ? dialoguesWithCarla : dialoguesAlone;
+        let currentDialogue = 0;
+
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showChoicePrompt();
+            }
+        }
+
+        function showChoicePrompt() {
+            document.getElementById('choice-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option === "meetProfessor") {
+                sessionStorage.setItem('metProfessor', 'true'); // Save choice
+                window.location.href = 'exploreCity.html'; // Leads to the scene where Ale meets the professor
+            } else {
+                sessionStorage.setItem('metProfessor', 'false'); // Save choice
+                window.location.href = 'walkinginforestScene.html'; // Leads to the main treasure hunt journey
+            }
+        }
+    </script>
+</body>
+
+</html>

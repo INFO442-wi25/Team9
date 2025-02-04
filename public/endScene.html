@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Over</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundBlack">
+    <div class="center-box">
+      <h1>You die!</h1>
+      <h2 class="death-message">You let greed take over and weren't true to your friend.</h2>
+      
+      <div class="button-group">
+        <button onclick="restartGame()">Restart</button>
+        <button onclick="goToCheckpoint()">Checkpoint</button>
+      </div>
+    </div>
+
+    <script>
+      function restartGame() {
+        window.location.href = 'index.html';
+      }
+
+      function goToCheckpoint() {
+        window.location.href = 'templeScence.html';
+      }
+    </script>
+  
+</body>
+
+</html>
