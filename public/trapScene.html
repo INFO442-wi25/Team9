@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Town Scene</title>
+    <title>Trap Scene</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
@@ -12,27 +12,48 @@
     <div class="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
-
-        <div id="question-container" style="display: none;">
-            <p id="question-text">Stay and talk to people in town?</p>
-            <div class="button-group">
-              <button onclick="chooseOption('option 1')">Yes</button>
-              <button onclick="chooseOption('option 2')">No</button>
-            </div>
-        </div>
     </div>
 
-    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <!-- <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <img id="villager-image" src="/images/villager.png" alt="Villager" class="characterLeftSide" style="display: none;"> -->
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
         
         let dialoguesWithCarla = [
-            ""
+            "Ale and Carla decide to keep walking, the path ahead of them seeming less inviting with each step.", 
+            "The trees grow denser, their twisted branches reaching out like fingers trying to grab them. A strange silence fills the air, and Carla can’t shake the feeling that something’s off.", 
+            "Carla glances at Ale with a nervous look, but she doesn’t say anything.",
+            "Suddenly, without warning, Ale steps forward and *whoosh!*",
+            "Before they realize it, a rope snaps tight around their ankle, yanking them off the ground.", 
+            "They’re hanging upside down, spinning wildly, their body jerking painfully as the trap pulls them into the air. The sharp pull knocks the wind out of them, and they gasp, trying to free themself, but it’s no use.",
+            "From below, they hear Carla’s voice, filled with panic.", 
+            "Carla: Ale! Hold on!",
+            "She scrambles around the area below, searching for a way to help. Her hands tremble as she grabs the rope, trying to steady it.", 
+            "Carla: I’ve got you, don’t worry! [she shouts, her voice more confident than she feels]",
+            "Carla looks around frantically. She can’t undo the knot, so instead, she grabs a large rock and hurls it toward the branch above, hoping to break the rope.", 
+            "The rock hits the branch with a loud crack, but the rope is still holding strong.", 
+            "Carla: Come on! [she mutters under her breath].",
+            "She pulls out a small knife from her pack, eyes focused with determination. With steady hands, she slices at the rope above them, slowly but surely severing it.",
+            "Finally, with a few strong slices, the rope gives way, and Ale tumbles to the ground, landing hard but thankfully not injured.",
+            "They're finally out of the trap, but their heart’s still racing from the close call. Carla stands over them, her face full of relief.",
+            "Carla: That was too close.",
+            "Ale: [exhale of relief] Let’s keep moving. But next time, I’ll pay more attention to the path.",
+            "Carla smiles and pats Ale's shoulder while she helps them up.",
+            "Carla: You’re lucky I’m around to save you, Ale."
         ];
         
         let dialoguesAlone = [
-            ""
+            "Ale keeps walking, feeling more and more uneasy with every step.",
+            "The path becomes more rugged and unfamiliar, the trees closing in like a maze. The silence around them is suffocating, and every snap of a twig makes them jump.",
+            "It’s as though something is watching them, waiting for the perfect moment to strike.",
+            "Before they can react, they feel the sharp tug of a rope around their ankle. The next thing they know, they’re hanging upside down, the blood rushing to their head.",
+            "They struggle, trying to reach for their knife or any tool they can use, but they find their backpack on the ground.",
+            "Panic sets in as they realize they're trapped, and there’s no one around to help. They try to stay calm, but it’s difficult as their vision starts to blur.",
+            "Minutes pass—at least it feels like minutes—before they start to feel their strength fading.",
+            "They’re stuck in the trap, alone, and they begin to wonder if anyone will find them. Their arms feel numb, and their chest grows heavy with each breath.", 
+            "The pain in their ankle is unbearable, but there’s nothing they can do about it. The world around them seems to grow colder, quieter.",
+            "They wish they’d gone to town."
         ];
     
         let dialogues = hasFriend ? dialoguesWithCarla : dialoguesAlone;
@@ -45,27 +66,17 @@
             if (currentDialogue < dialogues.length - 1) {
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-
-                // now show friend
-                if (currentDialogue === 0) {
-                    document.getElementById('villager-image').style.display = 'block';
-                }
             } else {
+                // Hide the next button when dialogues are finished
                 document.getElementById('dialogue').textContent = "";
                 document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
-                showQuestionPrompt();
-            }
-        }
 
-        function showQuestionPrompt() {
-            document.getElementById('question-container').style.display = 'block';
-        }
-
-        function chooseOption(option) {
-            if (option == "option 1") {
-                window.location.href = '';
-            } else {
-                window.location.href = '';
+                // Redirect based on the presence of a friend
+                if (hasFriend) {
+                    window.location.href = "nextScene.html"; // Change to the correct scene you want
+                } else {
+                    window.location.href = "endScene.html"; // Redirect to the end scene if no friend
+                }
             }
         }
     </script>
