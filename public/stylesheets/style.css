@@ -30,6 +30,18 @@ body.backgroundAirport {
   background-position: center;
 }
 
+body.backgroundJungle {
+  background-image: url('/images/jungle.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.backgroundTown {
+  background-image: url('/images/town.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .characterLeftSide {
   position: absolute;
   bottom: 10%; 

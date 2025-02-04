@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Town Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Stay and talk to people in town?</p>
+            <div class="button-group">
+              <button onclick="chooseOption('option 1')">Yes</button>
+              <button onclick="chooseOption('option 2')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+        
+        let dialoguesWithCarla = [
+            "They start their journey early in the moring. The city soon escapes them and their view is filled with green. The forest grows more dense as they walk.",
+            "Carla: So, Ale, what made you come all the way here? Treasure hunting isn’t exactly a normal vacation activity.",
+            "Ale: My grandpa. He used to tell me stories about the Llanganates when I was a kid. Something about the way he talked about it stuck with me.",
+            "Carla: Sounds like a good storyteller. The kind of stories that make you believe in something.",
+            "Ale: Yeah, something like that. What about you? You mentioned you’re from Ecuador. How do you know about the treasure?",
+            "Carla: It’s hard not to. Everyone here has heard the legend. When I was even younger, my dad would tell me about Rumiñawi and how he outsmarted the Spanish. That part always stuck with me But I’ve never been out here. The jungle isn’t exactly an easy trip, and the Llanganates might be the hardest one yet",
+            "Ale: And yet, here you are.",
+            "Carla: Yeah, guess I’m just curious. Plus, if you’re going to chase a legend, you might as well do it with someone who’s as stubborn as you are.",
+            "They fall into a comfortable silence and he's thankful to have a presence besides him.",
+            "He doesn't realize when it happened, but at some point Carla began to lead the way. He doesn't stop to question where she's leading them or how she hasn't looked down at her map once. It's as if the sound of cracking leaves and broken branches puts him in a daze and he wistfully follows.",
+            "Although he hasn't been keeping track of how long they've been walking, he feels it's about two hours when the forest starts to clear up. The faint bustle of a town can be heard ahead and he snaps out of the trance he'd fallen into, having zoned out.",
+            "Carlos: We're about to enter Baños. It’s a special place right on the edge of the Andes and the Amazon. If anyone knows something about the Llanganates, they’ll be here. Do you want to stop and ask around or should we continue walking?"
+        ];
+        
+        let dialoguesAlone = [
+            "Ale starts his journey early in the moring. The city soon escapes him and his view is filled with green. The forest grows more dense as he walks.",
+            "He's comfortable in the silence and is thankful for the trees blocking off the harsh sun.",
+            "Although he hasn't been keeping track of how long he's been walking, he feels it's about two hours when the forest starts to clear up. The faint bustle of a town can be heard ahead and he snaps out of the trance he'd fallen into, having zoned out.",
+            "There seems to be a town ahead."
+        ];
+    
+        let dialogues = hasFriend ? dialoguesWithCarla : dialoguesAlone;
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                // now show friend
+                if (currentDialogue === 0) {
+                    document.getElementById('friendAirport-image').style.display = 'block';
+                }
+            } else {
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+                showQuestionPrompt();
+            }
+        }
+
+        function showQuestionPrompt() {
+            document.getElementById('question-container').style.display = 'block';
+        }
+
+        function chooseOption(option) {
+            if (option == "option 1") {
+                window.location.href = 'townScene.html';
+            } else {
+                window.location.href = 'trapScene.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

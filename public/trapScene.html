@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 
-<body class="backgroundTown">
+<body class="backgroundJungle">
     <div class="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
@@ -23,25 +23,12 @@
     </div>
 
     <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
-    <img id="villager-image" src="/images/villager.png" alt="villager holding baby" class="characterLeftSide">
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
         
         let dialoguesWithCarla = [
-            "Ale: Good afternoon, sir. We’re looking for information about the Llanganates. Have you heard of it?",
-            "Villager: The Llanganates? You must have a lot of courage or not enough sense. The mountains aren’t known for welcoming everyone.",
-            "Ale: We’ve come a long way. We just want to learn what we can.",
-            "Villager: People have been chasing that treasure for generations. Some are after gold; others want the story. What are you looking for?",
-            "Ale: To be honest, both of them.",
-            "The villager looks them up and down in Skeptisim. He doesn’t know what to do other than try to put on his most trustworthy face. He probably ends up making a stupid face because the villager cracks a smile and releases a heavy sigh.",
-            "Villager: Youth and their curious souls. If you really want to pursue this journey then you’ll need the totem.",
-            "Ale: What’s the totem?",
-            "Villager: An artifact. A guide, they say. It’s been lost for years, but according to legend, it helps travelers gain access to something deeper in the Llanganates. Nobody knows exactly what, but without it, you’re as good as dead.",
-            "Ale: Do you know where it is?",
-            "Villager: They say it’s hidden in the jungle but no one knows where exactly. The path is steep, and the totem is hard to find. Many have gone looking for it and come back with nothing or they haven’t come back themselves. Be careful. Some believe it tests those who try to claim it. Respect the jungle, or it’ll turn on you.",
-            "Villager: Remember: the Llanganates don’t give up their secrets easily.",
-            "The villager turns to leave"
+            ""
         ];
         
         let dialoguesAlone = [
@@ -59,7 +46,7 @@
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
-                // now show town person
+                // now show friend
                 if (currentDialogue === 0) {
                     document.getElementById('villager-image').style.display = 'block';
                 }
