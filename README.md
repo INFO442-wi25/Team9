@@ -15,4 +15,5 @@ content
 
 ## Project
 
-Link to project: 
+Link to Figma design:
+Link to final project: 
