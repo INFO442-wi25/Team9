@@ -60,6 +60,12 @@ body.backgroundCave {
   background-position: center;
 }
 
+body.backgroundRiver {
+  background-image: url('/images/river.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .characterLeftSide {
   position: absolute;
   bottom: 10%; 
