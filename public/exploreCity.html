@@ -14,55 +14,58 @@
         <button id="next-btn" onclick="nextDialogue()">Next</button>
     </div>
 
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <img id="professor-image" src="/images/professor.png" alt="professor" class="characterRightSide">
+
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true';
+        document.getElementById('professor-image').style.display = 'none';
+        document.getElementById('friendAirport-image').style.display = 'block';
 
         let dialoguesWithCarla = [
             "Ale: Meeting the professor sounds promising, let's start there.",
-            "Carla: Okay! To the professor we go!",
-            "They navigate through Quito, passing colonial buildings, street vendors, and busy intersections.",
             "After a short bus ride, they arrive at the Central University of Ecuador, walking through its historic campus toward the history department.",
-            "Carla knocks on a wooden door marked *Dr. Santiago Perez – History & Archaeology*.",
-            "Professor Santiago: Come in!",
+            "Carla knocks on a wooden door marked *Dr. Maria Perez – History & Archaeology*.",
+            "Professor Maria: Come in!",
             "His office is packed with books, old maps, and artifacts. A middle-aged man with glasses looks up from his desk.",
-            "Carla: Professor Santiago! It’s been a while.",
-            "Professor Santiago: Carla! What a surprise. And who’s this?",
+            "Carla: Professor Maria! It’s been a while.",
+            "Professor Maria: Carla! What a surprise. And who’s this?",
             "Carla: This is Ale. He’s on a journey to find the Treasure of the Llanganates.",
-            "Professor Santiago leans back, studying Ale with curiosity.",
-            "Professor Santiago: That’s quite the ambition. Do you even know what you're up against?",
+            "Professor Maria leans back, studying Ale with curiosity.",
+            "Professor Maria: That’s quite the ambition. Do you even know what you're up against?",
             "Ale: I know it won’t be easy. But I’m prepared to try.",
-            "Professor Santiago: Hah! Good. Most people just talk about it. Few actually go looking.",
+            "Professor Maria: Hah! Good. Most people just talk about it. Few actually go looking.",
             "He reaches into a drawer and pulls out a faded map.",
-            "Professor Santiago: This is the closest thing we have to a guide. The Llanganates are unpredictable—you’ll need more than luck.",
+            "Professor Maria: This is the closest thing we have to a guide. The Llanganates are unpredictable—you’ll need more than luck.",
             "Carla: This is incredible!",
-            "Professor Santiago: If you want to find the treasure, head towards the town. Talk with the people they'll give more stories about the treasure.",
+            "Professor Maria: If you want to find the treasure, head towards the town. Talk with the people they'll give more stories about the treasure.",
             "Carla: Do you think we’ll be able to make it through the forest?",
-            "Professor Santiago: The forest will be tough. You’ll need to keep an eye out for any wild animals. Follow the marks on the trees and find the cave by the river. This should lead you right to it.",
+            "Professor Maria: The forest will be tough. You’ll need to keep an eye out for any wild animals. Follow the marks on the trees and find the cave by the river. This should lead you right to it.",
             "Ale: Thank you, Professor. This is exactly what we needed.",
-            "Professor Santiago: Just remember, there are forces at work in those mountains that you’ll never understand. Stay safe and good luck.",
+            "Professor Maria: Just remember, there are forces at work in those mountains that you’ll never understand. Stay safe and good luck.",
             "Ale and Carla exchange looks—this is turning into something much bigger than they expected.",
-            "Professor Santiago: Now go. There’s no time to waste."
+            "Professor Maria: Now go. There’s no time to waste."
         ];
 
         let dialoguesAlone = [
             "Ale: The professor seems like a good place to start.",
             "Ale arrives at the Central University of Ecuador, a sense of anticipation rising as they make their way toward the history department.",
-            "At the wooden door marked *Dr. Santiago Perez – History & Archaeology*, Ale knocks before stepping inside.",
-            "Professor Santiago: Come in! What brings you here?",
+            "At the wooden door marked *Dr. Maria Perez – History & Archaeology*, Ale knocks before stepping inside.",
+            "Professor Maria: Come in! What brings you here?",
             "Ale: I’ve heard you know something about the Treasure of the Llanganates. I’m looking for answers.",
-            "Professor Santiago looks up, intrigued by the unexpected visitor.",
-            "Professor Santiago: The Llanganates, huh? That’s a tale that’s been passed down through generations. You know it's no easy journey, right?",
+            "Professor Maria looks up, intrigued by the unexpected visitor.",
+            "Professor Maria: The Llanganates, huh? That’s a tale that’s been passed down through generations. You know it's no easy journey, right?",
             "Ale: I know it’s risky, but I’m willing to try. I need guidance, and I’ve heard you’re the expert.",
-            "Professor Santiago: Hah, I like your determination. I can give you some directions, but the treasure is not something you can just walk up to. It’s hidden, guarded by time and nature.",
-            "Professor Santiago: If you want to start your journey, head towards the town. From there, the people should tell you more stories about the treasure. Keep an eye out for marks on trees and a cave by the river. This should lead you right to it.",
+            "Professor Maria: Hah, I like your determination. I can give you some directions, but the treasure is not something you can just walk up to. It’s hidden, guarded by time and nature.",
+            "Professor Maria: If you want to start your journey, head towards the town. From there, the people should tell you more stories about the treasure. Keep an eye out for marks on trees and a cave by the river. This should lead you right to it.",
             "Ale: Sounds like a lot of ground to cover. How do I know I’m heading in the right direction?",
-            "Professor Santiago: Cross the river. When you see a waterfall, you’ll know you're close. That’s when the real challenge begins.",
+            "Professor Maria: Cross the river. When you see a waterfall, you’ll know you're close. That’s when the real challenge begins.",
             "Ale: I’ll keep that in mind. Thank you for your help.",
-            "Professor Santiago: Take this map with you. It’s not much, but it’s the only one we have. Remember there is danger all around you.",
+            "Professor Maria: Take this map with you. It’s not much, but it’s the only one we have. Remember there is danger all around you.",
             "Ale: Got it. I’ll be careful. This is just the beginning.",
-            "Professor Santiago: Good luck, Ale. If you need more help, you know where to find me.",
+            "Professor Maria: Good luck, Ale. If you need more help, you know where to find me.",
             "Ale smiles, feeling reassured. This is the moment their journey truly begins.",
-            "Professor Santiago: Now go. The sooner you leave, the better."
+            "Professor Maria: Now go. The sooner you leave, the better."
         ];
 
         let dialogues = hasFriend ? dialoguesWithCarla : dialoguesAlone;
@@ -73,6 +76,10 @@
             if (currentDialogue < dialogues.length - 1) {
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                if (currentDialogue === 3) {
+                    document.getElementById('professor-image').style.display = 'block';
+                }             
             } else {
                 window.location.href = 'walkingInForestScene.html'; // Move to the next scene
             }

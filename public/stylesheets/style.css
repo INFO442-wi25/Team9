@@ -66,6 +66,24 @@ body.backgroundRiver {
   background-position: center;
 }
 
+body.backgroundTemple {
+  background-image: url('/images/temple.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* body.backgroundInsideTemple {
+  background-image: url('/images/insideTemple.png');
+  background-repeat: no-repeat;
+  background-position: center;
+} */
+
+body.backgroundTreasureRoom {
+  background-image: url('/images/treasureRoom.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .characterLeftSide {
   position: absolute;
   bottom: 10%; 
@@ -166,14 +184,6 @@ body.backgroundRiver {
   margin-bottom: 10px;
 }
 
-body.backgroundClosedDoor {
-  background-image: url('/images/Temple two hands.png');
-  background-position: center;
-  background-size: 88%; 
-  background-color: white;
-  background-repeat: no-repeat;
-}
-
 #scroll-image {
   display: none;
   position: absolute;
@@ -182,12 +192,4 @@ body.backgroundClosedDoor {
   transform: translateX(-50%);
   width: 40%;
   max-width: 500px;
-}
-
-body.backgroundTemple{
-  background-image: url('/images/Temple exterior.png');
-  background-position: center;
-  background-size: 88%; 
-  background-color: white;
-  background-repeat: no-repeat;
 }
