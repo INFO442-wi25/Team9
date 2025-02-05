@@ -30,6 +30,12 @@ body.backgroundAirport {
   background-position: center;
 }
 
+body.backgroundCity {
+  background-image: url('/images/city.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 body.backgroundJungle {
   background-image: url('/images/jungle.png');
   background-repeat: no-repeat;
@@ -38,6 +44,18 @@ body.backgroundJungle {
 
 body.backgroundTown {
   background-image: url('/images/town.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.backgroundNightJungle {
+  background-image: url('/images/nightJungle.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.backgroundCave {
+  background-image: url('/images/cave.png');
   background-repeat: no-repeat;
   background-position: center;
 }

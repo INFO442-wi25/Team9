@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 
-<body class="backgroundJungle">
+<body class="backgroundNightJungle">
     <div class="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
@@ -26,7 +26,34 @@
 
     <script>
         let dialogues = [
-            
+            "Day eventually turns into night, and the jungle grows colder than he anticipated. He’s been keeping an eye out for an adequate place to camp for the night. Their shoulders are slouched and their pace is visibly slowing. His feet are hurting in ways he didn’t know they could.",
+            "Carla: Ale, there’s a cave ahead.",
+            "He looks to where she points and makes out the faint outline of a cave opening. They make their way to the entrance as Carla pulls a lighter from her pocket, igniting it to illuminate the cave and ensure it's empty.",
+            "Carla: Looks safe enough.",
+            "He nods in acknowledgment and steps in first. The cave barely fits both of them and he has to crouch in order to fit.",
+            "They sit side by side and he throws a granola bar into Carla’s lap.",
+            "Ale: Dinner.",
+            "Carla: Wow, thanks.",
+            "I’m rationing.",
+            "They eat in silence, gazing toward the cave opening. If they weren’t in the situation they were in, he’d enjoy the view more. It was a clear night, the stars claiming the stage. He couldn’t see the moon from where he sat, but he imagined it’d be beautiful.",
+            "Carla: You head to sleep first, I’ll keep watch.",
+            "Ale: Keep watch? You expecting someone to attack us?",
+            "Carla: You never know. There’s lots of danger out here.",
+            "Too tired to argue, he moves into a more comfortable sleep position.",
+            "Ale: Wake me up when you get tired and I’ll take the second shift.",
+            "She hums in response and he knocks out swiftly after.",
+            "[Time Skip]",
+            "Ale wakes up in a cave, still tired, but with more energy than before. The faint sound of insects flying around can be heard from outside, while the sun shines through the cave’s opening.",
+            "He sits up and looks around to see Carla sitting in the same spot she had been before he fell asleep.",
+            "Ale: You didn’t sleep?",
+            "Carla: Couldn’t.",
+            "Ale: You were supposed to wake me up so we could swap.",
+            "Carla: It’s fine, I wouldn’t have been able to sleep anyway.",
+            "Ale and Carla look at each other and sigh, realizing that today’s another day of crossing through a jungle in search of a treasure that might not even exist.",
+            "They gather their belongings and head out of the cave that provided them with shelter for the night.",
+            "Carla: The sun is shining. We should get moving and take advantage of the day.",
+            "Ale: Yeah we should, but we’re running low on supplies. If we’re going to keep going, we should take some time to stock up.",
+            "Carla: We can, but every minute we spend here is a minute the jungle gets tougher to cross. Should we craft and collect more resources or should we just continue with what we have?"
         ];
     
         let currentDialogue = 0;
@@ -39,9 +66,16 @@
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
-                // now change background
-                if (currentDialogue === 3) {
-                    document.getElementById('grandpa-image').style.display = 'block';
+                // now change background to cave
+                if (currentDialogue === 4) {
+                    document.body.classList.remove('backgroundNightJungle');
+                    document.body.classList.add('backgroundCave');
+                }
+
+                // now change background to jungle 
+                if (currentDialogue === 25) {
+                    document.body.classList.remove('backgroundCave');
+                    document.body.classList.add('backgroundJungle');
                 }
             } else {
                 document.getElementById('dialogue').textContent = "";

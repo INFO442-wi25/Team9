@@ -23,9 +23,10 @@
         </div>
     </div>
 
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
-
 
         let dialoguesWithCarla = [
             "[Lands in Ecuador]",
@@ -54,6 +55,10 @@
             if (currentDialogue < dialogues.length - 1) {
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                if (hasFriend === true) {
+                    document.getElementById('friendAirport-image').style.display = 'block';
+                }
             } else {
                 document.getElementById('dialogue').textContent = "";
                 document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
