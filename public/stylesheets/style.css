@@ -36,6 +36,12 @@ body.backgroundCity {
   background-position: center;
 }
 
+body.backgroundOffice {
+  background-image: url('/images/office.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 body.backgroundJungle {
   background-image: url('/images/jungle.png');
   background-repeat: no-repeat;
@@ -72,11 +78,11 @@ body.backgroundTemple {
   background-position: center;
 }
 
-/* body.backgroundInsideTemple {
+body.backgroundInsideTemple {
   background-image: url('/images/insideTemple.png');
   background-repeat: no-repeat;
   background-position: center;
-} */
+}
 
 body.backgroundTreasureRoom {
   background-image: url('/images/treasureRoom.png');

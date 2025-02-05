@@ -79,6 +79,8 @@
 
                 if (currentDialogue === 3) {
                     document.getElementById('professor-image').style.display = 'block';
+                    document.body.classList.remove('backgroundCity');
+                    document.body.classList.add('backgroundOffice');
                 }             
             } else {
                 window.location.href = 'walkingInForestScene.html'; // Move to the next scene
