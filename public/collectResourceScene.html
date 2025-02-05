@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Scene</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let dialogues = [
+            "Carla: If we’re going to make it through this journey, we need more than just luck and what we have right now. Let’s see if we can put something useful together.",
+            "Ale: Yeah, the jungle looks a lot denser over there, so we’re definitely going to need something to help us navigate and clear the way. Something like an ax or machete.",
+            "Ale and Carla move through the dense jungle, their eyes scanning the ground and up in the trees for anything that might be useful. The morning light barely passes through the thick trees above, but gives them enough light to see what’s around them.",
+            "Ale spots a cluster of fallen branches near the base of a massive tree. He crouches down, running his hand along the length of a thick, sturdy stick. It’s strong and just the right size for a handle. He grabs a few more and holds onto them as he walks.",
+            "Ale: These could work for the base of the ax or machete. We just need something to secure them.",
+            "A few steps away, Carla kneels beside a tangle of vines that are hanging over a fallen log. She gives one a sharp tug, testing its strength, but it doesn’t break. She forcibly rips and pulls a few more off the log.",
+            "Carla: I think I’ve got what we need. These vines are strong enough to hold things together and can act like a string.",
+            "As she straightens up, something catches Carla’s attention, a collection of sharp and jagged stones. She picks one up, running her thumb along the edge. It’s rough but sharp enough to cut.",
+            "Carla: Ale, check this out. This could actually work as a blade or the bit of what we’re hoping to make.",
+            "Ale: Yeah, this is perfect.",
+            "They sit down on the floor and begin binding their materials. Ale presses the largest stone against the end of the thickest stick, holding it in place while Carla uses the vines to secure and tie it. She pulls them tight, using all her strength to knot them securely.",
+            "Ale and Carla step back in shock looking at what they just created.",
+            "Carla: Did we for real just make an ax in this jungle?",
+            "Ale: Looks like it. It’s not bad for a couple of treasure hunters that don’t know too much about what they’re doing.",
+            "Carla: This isn’t too bad for what we’re working with here. It’s not pretty, but it’ll do the job and hopefully save us time."
+        ];
+    
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                window.location.href = "riverScene.html";
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+            }
+        }
+    </script>
+</body>
+
+</html>

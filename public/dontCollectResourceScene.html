@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Scene</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundJungle">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+    </div>
+
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+
+    <script>
+        let dialogues = [
+            "Ale: I think we’ll be fine with what we have. I mean, we’ve made it this far with what we’ve got and I’m guessing that we’re getting closer to the temple.",
+            "Carla: Are you sure? We just don’t have anything to facilitate this journey, and we’re running low on food. If the jungle gets any worse, we might regret not taking more time to prepare.",
+            "Ale: We’re making good time. If we keep this pace, we might actually get to the temple before dark. So I say let’s just keep moving along.",
+            "Carla: Let’s just hope our current resources last the rest of the journey. I really don’t want to end up starving or lost in the middle of nowhere.",
+            "The terrain is rougher than before and the ground uneven, covered in twisted roots that threaten to trip them with every step. Leaves brush against their arms as they push forward, their clothes already damp from the jungle’s humidity.",
+            "They keep moving, their pace steady despite the thickening surroundings. The jungle seems more alive now, the rustling of leaves making it feel like they’re being watched, whether it’s by animals or something else, neither of them can tell.",
+            "Carla: Okay, I need a break. Unless you want me passing out before we even see this temple.",
+            "Ale stops a few steps ahead, looking around before sighing. They find a fallen log, its surface smooth from years of rain and wear, and sit down.",
+            "Carla: Sooo, how much farther do you think we have to go?",
+            "Ale: I don’t know exactly. But the jungle’s getting denser, which means we’re heading in the right direction.",
+            "Carla leans back, staring up at the trees that tower above them.",
+            "Carla: Oh right. Or it means we’re going to be walking for hours more to come.",
+            "Ale: Well then partner, let’s just keep trucking along."
+        ];
+    
+        let currentDialogue = 0;
+    
+        // Set the initial dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+        
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                window.location.href = "riverScene.html";
+                document.getElementById('dialogue').textContent = "";
+                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
+            }
+        }
+    </script>
+</body>
+
+</html>
