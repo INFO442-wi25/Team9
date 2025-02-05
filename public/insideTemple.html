@@ -19,6 +19,7 @@
 
     <script>
         let currentDialogue = 0;
+        let lastDialogueReached = false;
 
         let closedDoorDialogues = [
             "Ale and Carla step into the temple, the heavy stone door grinding shut behind them with a deep, final thud.",
@@ -43,19 +44,27 @@
         function nextDialogue() {
             if (typeof closedDoorDialogues[currentDialogue] === "function") {
                 closedDoorDialogues[currentDialogue]();
+                currentDialogue++;
+                nextDialogue();
+                return;
             } else {
                 let dialogueText = closedDoorDialogues[currentDialogue];
                 document.getElementById('dialogue').textContent = dialogueText;
                 toggleCarlaImage(dialogueText);
+                toggleScroll(dialogueText);
             }
 
             if (currentDialogue < closedDoorDialogues.length - 1) {
                 currentDialogue++;
             } else {
-                window.location.href = "treasureScene.html";
+                if (!lastDialogueReached) {
+                    lastDialogueReached = true;
+                } else {
+                    window.location.href = "treasureScene.html";
+                }
             }
         }
-
+        
         function showScroll() {
             document.getElementById("scroll-image").style.display = "block";
         }
@@ -64,18 +73,28 @@
             document.getElementById("scroll-image").style.display = "none";
         }
 
+        function toggleScroll(dialogue) {
+            let scrollImage = document.getElementById("scroll-image");
+            if (dialogue.startsWith('It reads:')) {
+                scrollImage.style.display = "block";
+            } else {
+                scrollImage.style.display = "none";
+            }
+        }
+        
         function toggleCarlaImage(dialogue) {
             let carlaImage = document.getElementById("carla-image");
-            if (dialogue.includes("Carla")) {
+            if (dialogue.includes("Carla:")) {
                 carlaImage.style.display = "block";
             } else {
                 carlaImage.style.display = "none";
             }
         }
-
+        
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('dialogue').textContent = closedDoorDialogues[currentDialogue];
             toggleCarlaImage(closedDoorDialogues[currentDialogue]);
+            toggleScroll(closedDoorDialogues[currentDialogue]);
         });
     </script>
 </body>
