@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>River Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body class="backgroundRiver">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+    </div>
+
+    <script>
+        let hasFriend = sessionStorage.getItem('hasFriend') === 'true';
+        let hasAxe = sessionStorage.getItem('hasAxe') === 'true';
+        let hasTotem = sessionStorage.getItem('hasTotem') === 'true';
+
+        // 1. Ale and Carla have both the axe and the totem
+        let dialoguesWithCarla_AxeTotem = [
+            "Ale and Carla hear rushing water as they approach a wide, fast-moving river with remains of a broken bridge.",
+            "Ale kneels by the river, scooping cold water into his hands.",
+            "Ale: Well, the water’s nice. The big problem is, how are we supposed to get across?",
+            "Carla: It doesn’t look like there’s a way around. I guess we could build a raft with the axe we just made.",
+            "Ale: If we can't build the raft, we’re stuck swimming.",
+            "Carla: Yeah, I’m trying to find treasure, not drown.",
+            "They gather logs and vines, working quickly. Carla ties vines tightly while Ale holds the logs in place.",
+            "Carla: If this falls apart halfway, I’m blaming you.",
+            "Ale: Relax. It'll hold. Probably.",
+            "Carla: Oh lovely. That's exactly what I needed to hear",
+            "They drag the raft to the water. It wobbles but stays together.",
+            "Carla: Well, at least it’s not sinking right away. Let’s go before I start second-guessing this.",
+            "They paddle hard but with every push it feels like they're not getting anywhere. Ale's shoulder starts to grow tired but they just shake it off.",
+            "Carla: Try not to move too much. The last thing we need is to fall of this thing",
+            "Ale: I’m just trying to see if there’s anything under the—",
+            "The raft moves slowly. Ale shifts his weight, and the raft tilts dangerously.",
+            "Ale slips and falls into the water, grabbing the raft with the totem in his other hand.",
+            "Carla: Ale!",
+            "Ale: I can’t hold both!",
+            "Carla: Shut up and hold on!",
+            "She pulls Ale back onto the raft, both soaked and gasping.",
+            "Carla: What were you thinking?!",
+            "Ale: I was just trying to see under the water.",
+            "Carla: Yeah? How’d that work out for you?",
+            "Ale: Well, I held onto the totem, so that’s something. Even better, I’m still alive.",
+            "Carla: Yeah, great we didn’t lose the totem. It would’ve been worse if we lost both you and the totem!",
+            "They paddle carefully until reaching the riverbank.",
+            "Ale: Let’s never do that again.",
+            "Carla: Yeah, I prefer not to drown."
+        ];
+
+        // 2. Ale and Carla have the axe but no totem
+        let dialoguesWithCarla_AxeOnly = [
+            "Ale and Carla reach a fast river with a broken bridge.",
+            "Ale: Guess we’re building a raft with our trusty axe.",
+            "They gather logs and vines, building a raft.",
+            "Carla: If this falls apart halfway, I’m blaming you.",
+            "Ale: Relax. It'll hold. Probably.",
+            "Carla: Oh lovely. That's exactly what I needed to hear",
+            "They drag the raft to the water. It wobbles but stays together.",
+            "Carla: Well, at least it’s not sinking right away. Let’s go before I start second-guessing this.",
+            "They paddle hard but with every push it feels like they're not getting anywhere. Ale's shoulder starts to grow tired but they just shake it off.",
+            "Carla: Try not to move too much. The last thing we need is to fall of this thing",
+            "Ale: I’m just trying to see if there’s anything under the—",
+            "The raft moves slowly. Ale shifts his weight, and the raft tilts dangerously.",
+            "Ale slips and falls into the water, grabbing the raft with the totem in his other hand.",
+            "Carla: Ale!",
+            "Ale: I can’t hold on much longer!",
+            "Carla: You’re not dying today! Just hold on!",
+            "With effort, Carla pulls Ale back onto the raft.",
+            "Carla: What were you thinking?!",
+            "Ale: I was just trying to see under the water.",
+            "Carla: Yeah? How’d that work out for you?",
+            "Ale: Well, I’m still alive, so there’s that.",
+            "Carla: Great. Let’s just get across.",
+            "They paddle carefully and reach the riverbank.",
+            "Ale: Let’s never do that again.",
+            "Carla: Yeah, I prefer not to drown."
+        ];
+
+        // 3. Ale and Carla don’t have the axe (they try to swim)
+        let dialoguesWithCarla_NoAxe = [
+            "Ale: Let’s try swimming across. What’s the worst that could happen?",
+            "They dive in, but the current is too strong!",
+            "They struggle, pulled under by the rushing waves.",
+            "Ale sees Carla drifting further away.",
+            "They can’t make it and are swept under.",
+        ];
+
+        // Determine which dialogue to use
+        let dialogues;
+        let isDeathScene = false; // Flag to track if the character dies
+
+        if (hasFriend && hasAxe && hasTotem) {
+            dialogues = dialoguesWithCarla_AxeTotem;
+        } else if (hasFriend && hasAxe) {
+            dialogues = dialoguesWithCarla_AxeOnly;
+        } else if (hasFriend) {
+            dialogues = dialoguesWithCarla_NoAxe;
+            isDeathScene = true; // Mark this as a death scene
+        } 
+
+        let currentDialogue = 0;
+
+        // Display the first dialogue
+        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+        function nextDialogue() {
+            if (currentDialogue < dialogues.length - 1) {
+                currentDialogue++;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            } else {
+                // Redirect based on survival or death
+                if (isDeathScene) {
+                    window.location.href = "endScene.html"; // Redirect to end scene if they die
+                } else {
+                    window.location.href = "nextScene.html"; // Proceed to the next scene if they survive
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
