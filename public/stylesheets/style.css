@@ -165,3 +165,29 @@ body.backgroundRiver {
   text-align: left;
   margin-bottom: 10px;
 }
+
+body.backgroundClosedDoor {
+  background-image: url('/images/Temple two hands.png');
+  background-position: center;
+  background-size: 88%; 
+  background-color: white;
+  background-repeat: no-repeat;
+}
+
+#scroll-image {
+  display: none;
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  max-width: 500px;
+}
+
+body.backgroundTemple{
+  background-image: url('/images/Temple exterior.png');
+  background-position: center;
+  background-size: 88%; 
+  background-color: white;
+  background-repeat: no-repeat;
+}
