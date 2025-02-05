@@ -1,100 +1,137 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Scene</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Scene</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 
-<body class="backgroundNightJungle">
-    <div class="dialogue-box">
+<body class="backgroundTemple">
+    <div class="dialogue-box" id="dialogue-box">
         <p id="dialogue"></p>
         <button id="next-btn" onclick="nextDialogue()">Next</button>
-
+    
         <div id="question-container" style="display: none;">
-            <p id="question-text">Collect Resources?</p>
+            <p id="question-text"></p>
             <div class="button-group">
-              <button onclick="chooseOption('option 1')">Yes</button>
-              <button onclick="chooseOption('option 2')">No</button>
+                <button onclick="chooseAnswer(48)">48</button>
+                <button onclick="chooseAnswer(46)">46</button>
             </div>
         </div>
-    </div>
+    </div>    
 
-    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <img id="carla-image" src="/images/airportFriend.png" alt="Carla speaking" class="characterLeftSide" style="display: none;">
 
     <script>
-        let dialogues = [
-            "Day eventually turns into night, and the jungle grows colder than he anticipated. He’s been keeping an eye out for an adequate place to camp for the night. Their shoulders are slouched and their pace is visibly slowing. His feet are hurting in ways he didn’t know they could.",
-            "Carla: Ale, there’s a cave ahead.",
-            "He looks to where she points and makes out the faint outline of a cave opening. They make their way to the entrance as Carla pulls a lighter from her pocket, igniting it to illuminate the cave and ensure it's empty.",
-            "Carla: Looks safe enough.",
-            "He nods in acknowledgment and steps in first. The cave barely fits both of them and he has to crouch in order to fit.",
-            "They sit side by side and he throws a granola bar into Carla’s lap.",
-            "Ale: Dinner.",
-            "Carla: Wow, thanks.",
-            "I’m rationing.",
-            "They eat in silence, gazing toward the cave opening. If they weren’t in the situation they were in, he’d enjoy the view more. It was a clear night, the stars claiming the stage. He couldn’t see the moon from where he sat, but he imagined it’d be beautiful.",
-            "Carla: You head to sleep first, I’ll keep watch.",
-            "Ale: Keep watch? You expecting someone to attack us?",
-            "Carla: You never know. There’s lots of danger out here.",
-            "Too tired to argue, he moves into a more comfortable sleep position.",
-            "Ale: Wake me up when you get tired and I’ll take the second shift.",
-            "She hums in response and he knocks out swiftly after.",
-            "[Time Skip]",
-            "Ale wakes up in a cave, still tired, but with more energy than before. The faint sound of insects flying around can be heard from outside, while the sun shines through the cave’s opening.",
-            "He sits up and looks around to see Carla sitting in the same spot she had been before he fell asleep.",
-            "Ale: You didn’t sleep?",
-            "Carla: Couldn’t.",
-            "Ale: You were supposed to wake me up so we could swap.",
-            "Carla: It’s fine, I wouldn’t have been able to sleep anyway.",
-            "Ale and Carla look at each other and sigh, realizing that today’s another day of crossing through a jungle in search of a treasure that might not even exist.",
-            "They gather their belongings and head out of the cave that provided them with shelter for the night.",
-            "Carla: The sun is shining. We should get moving and take advantage of the day.",
-            "Ale: Yeah we should, but we’re running low on supplies. If we’re going to keep going, we should take some time to stock up.",
-            "Carla: We can, but every minute we spend here is a minute the jungle gets tougher to cross. Should we craft and collect more resources or should we just continue with what we have?"
-        ];
-    
+        let hasTotem = sessionStorage.getItem('hasTotem') === 'true'; 
         let currentDialogue = 0;
-    
-        // Set the initial dialogue
-        document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-        
+        let dialogues = [];
+
+        let templeIntroDialogues = [
+            "After hours of travelling through the jungle while being drenched in water and shivering, Ale spots what looks like a tower in the distance. The tip of some sort of structure pointing up through the trees drew his attention.",
+            "As they approach it, they see that its stones, which were once brown, are now covered in moss and vines.",
+            "Carla and Ale look at each other and sigh in relief. They had finally reached the temple that hundreds of people in the past had tried to reach but had fallen short of.",
+            "Their sighs of relief, however, turned to concern as they did not know what was behind those walls.",
+            "Ale: So this is it huh? We’ve finally arrived at the temple after so many days and scary experiences. It’s actually so much bigger than I thought.",
+            "Carla: Yep. It’s inside there where people say that the lost treasure of the Llanganates is.",
+            "Ale: I remember something about my grandpa's story that there was a place to insert the totem in for it to open. Do we still have the totem?"
+        ];
+
+        let totemDialogues = [
+            "Carla: Yep, we still have the totem after that scary river crossing experience and the weird deer we experienced from earlier in this trip.",
+            "Ale: Alright. Let’s search for a place to put the totem in and we should be good. You look on that side of the temple and I’ll look on this side. Just shout whenever you find something that could be of useful information.",
+            "Ale and Carla split up, each scanning the towering stone walls of the temple.",
+            "Ale runs his fingers along the rough stone, his eyes narrowing as he looks carefully at the engravings.",
+            "Some of the symbols seem familiar, but nothing stands out as a place to insert the totem.",
+            "He steps over scattered rubble and stones while carefully pushing aside smaller vines that hang over the lower portions of the temple.",
+            "Carla moves methodically along the other side, scanning the walls. She traces a particular set of carvings, noticing that they form a circular pattern, different from the rest of the temple’s straight-lined engravings",
+            "Her fingers brush against the center, and she suddenly feels a hole underneath the dirt and moss",
+            "She leans closer, using her sleeve to wipe away the dirt. Beneath the layer of dust, she sees a hollowed-out slot, just wide enough for the totem.",
+            "Carla: Ale! Over here! I think I found something!",
+            "Her voice echoes slightly against the stone, and Ale immediately stops what he’s doing, turning in her direction.",
+            "Hearing the urgency in her voice, he rushed over, already pulling the totem from his pocket.",
+            "Ale inserts the totem",
+            "A deep rumbling sound shakes the ground beneath them. The temple wall shifts slightly, dust falling from above as the stone door begins to slide open, revealing a dark corridor inside.",
+            "With one last glance at the jungle behind them, they step inside the temple, disappearing into the darkness beyond as the temple closes behind them.",
+            () => transitionToNextScene()
+        ];
+
+        let noTotemDialogues = [
+            "Ale pulls his pack off his shoulders, quickly rummaging through it. His movements slow as he digs deeper, realization dawning on his face.",
+            "Ale: Wait… where is it? Can you check through your bag to see if you have it?",
+            "Carla begins searching through her bag, panicking and breathing heavily.",
+            "Carla: Ale. Please tell me we didn’t forget the ONE thing we needed.",
+            "Ale: Well, if you don’t have it and I don’t have it, then we’re kind of screwed here.",
+            "Carla: So what now? We walked all this way just to turn back? There’s got to be another way to get into this thing…",
+            "Ale: 3… 6… 12… 24… _ … 96.",
+            "Carla: Alright, so a math problem. I didn’t know I came here to do math. So what's happening between each number? Let’s see…3 to 6, 6 to 12, 12 to 24...",
+            () => showPuzzleOptions()
+        ];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            dialogues = [...templeIntroDialogues]; 
+            document.getElementById('dialogue').textContent = dialogues[currentDialogue]; 
+        });
+
         function nextDialogue() {
             if (currentDialogue < dialogues.length - 1) {
                 currentDialogue++;
-                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-
-                // now change background to cave
-                if (currentDialogue === 4) {
-                    document.body.classList.remove('backgroundNightJungle');
-                    document.body.classList.add('backgroundCave');
-                }
-
-                // now change background to jungle 
-                if (currentDialogue === 25) {
-                    document.body.classList.remove('backgroundCave');
-                    document.body.classList.add('backgroundJungle');
+                if (typeof dialogues[currentDialogue] === "function") {
+                    dialogues[currentDialogue](); 
+                } else {
+                    document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+                    toggleCarlaImage(dialogues[currentDialogue]);
                 }
             } else {
-                document.getElementById('dialogue').textContent = "";
-                document.getElementById('next-btn').style.display = 'none'; // Hide next button when finished
-                showQuestionPrompt();
+                if (JSON.stringify(dialogues) === JSON.stringify(templeIntroDialogues)) {
+                    dialogues = hasTotem ? [...totemDialogues] : [...noTotemDialogues];
+                    currentDialogue = 0;
+                    document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+                    toggleCarlaImage(dialogues[currentDialogue]);
+                }
             }
         }
 
-        function showQuestionPrompt() {
-            document.getElementById('question-container').style.display = 'block';
+        function showPuzzleOptions() {
+            document.getElementById('dialogue').textContent = "What is the missing number in the sequence? 3, 6, 12, 24, _ , 96?";
+            document.getElementById('next-btn').style.display = "none";
+            document.getElementById('question-container').style.display = "block";
         }
 
-        function chooseOption(option) {
-            if (option == "option 1") {
-                const hasResource = sessionStorage.setItem('hasResource', 'true');
-                window.location.href = 'collectResourceScene.html';
+        function chooseAnswer(answer) {
+            document.getElementById('question-container').style.display = "none"; 
+            document.getElementById('next-btn').style.display = "block";
+
+            if (answer === 48) {
+                dialogues = [
+                    "A deep rumbling sound shakes the ground beneath them. The temple wall shifts slightly, dust falling from above as the stone door begins to slide open, revealing a dark corridor inside.",
+                    "With one last glance at the jungle behind them, they step inside the temple, disappearing into the darkness beyond as the temple closes behind them.",
+                    () => transitionToNextScene()
+                ];
+                currentDialogue = 0;
+                document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+                toggleCarlaImage(dialogues[currentDialogue]); 
             } else {
-                const hasResource = sessionStorage.setItem('hasResource', 'false');
-                window.location.href = 'dontCollectResourceScene.html';
+                sessionStorage.setItem('hasTotem', 'false'); 
+                window.location.href = "templeScene.html";
+            }
+        }
+
+        function transitionToNextScene() {
+            setTimeout(() => {
+                window.location.href = "insideTemple.html";
+            }, 3000);
+        }
+
+        function toggleCarlaImage(dialogue) {
+            let carlaImage = document.getElementById("carla-image");
+            if (dialogue.startsWith("Carla:")) {
+                carlaImage.style.display = "block"; 
+            } else {
+                carlaImage.style.display = "none"; 
             }
         }
     </script>
