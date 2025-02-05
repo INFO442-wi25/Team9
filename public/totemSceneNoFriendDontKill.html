@@ -14,8 +14,6 @@
         <button id="next-btn" onclick="nextDialogue()">Next</button>
     </div>
 
-    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
-
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
 
@@ -23,8 +21,6 @@
             "He stands up and walks back to where he previously was.",
             "He'll find a source of food elsewhere. For now, the totem was enough."
         ];
-
-        document.getElementById('friendAirport-image').style.display = 'none';
     
         let dialogues = dialoguesAloneDontKill;
         let currentDialogue = 0;

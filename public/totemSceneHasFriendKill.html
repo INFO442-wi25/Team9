@@ -18,6 +18,7 @@
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+        document.getElementById('friendAirport-image').style.display = 'none';
 
         let dialoguesWithCarlaKill = [
             "He pounces for the deer, grabbing at its neck to drag it down. He miscalculates the force it’d take and topples over from the excessive force. In the process, the totem slips out his hand. He reaches for it, but the deer recovers swiftly, snatching it with its mouth. Before Ale can get back on his feet, it's already darting into the forest. He curses and turns back to see Carla standing with her arms crossed.",
@@ -42,7 +43,7 @@
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
                 // now show friend
-                if (currentDialogue === 0) {
+                if (currentDialogue === 1) {
                     if (hasFriend === true) {
                         document.getElementById('friendAirport-image').style.display = 'block';
                     }

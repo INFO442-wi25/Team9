@@ -23,9 +23,11 @@
     </div>
 
     <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
+    <img id="deer-image" src="/images/deer.png" alt="brown deer" class="characterRightSide">
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+        document.getElementById('deer-image').style.display = 'none';
 
         let dialoguesWithCarla = [
             "Carla: Sooo, how are we supposed to go about finding this? The only thing the villager told us was that its somewhere in the jungle and that we need to respect the jungle. Which is sooo helpful.",
@@ -65,6 +67,11 @@
                     if (hasFriend === true) {
                         document.getElementById('friendAirport-image').style.display = 'block';
                     }
+                }
+
+                if (currentDialogue === 15) {
+                    document.getElementById('deer-image').style.display = 'block';
+                    document.getElementById('friendAirport-image').style.display = 'none';
                 }
             } else {
                 document.getElementById('dialogue').textContent = "";
