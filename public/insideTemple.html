@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring the City</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundClosedDoor">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+    </div>
+
+    <img id="scroll-image" src="/images/scroll.png" style="display: none;">
+    <img id="carla-image" src="/images/airportFriend.png" alt="Carla speaking" class="characterLeftSide" style="display: none;">
+
+    <script>
+        let currentDialogue = 0;
+
+        let closedDoorDialogues = [
+            "Ale and Carla step into the temple, the heavy stone door grinding shut behind them with a deep, final thud.",
+            "The sudden silence is unsettling. The sound of the jungle is gone, replaced by the occasional drip of water echoing through the huge, empty temple.",
+            "The air is thick and stale, and carries the scent of damp stone and something old. The temperature drops slightly, a complete contrast to the humid jungle outside.",
+            "The temple is massive inside, its towering stone pillars carved with ancient patterns and symbols, their meanings lost to time.",
+            "For a moment, Ale just stands there. His grandfather had always told him these stories, but standing here, in the place where history was written, makes it feel different.",
+            'Carla: "You good, or are you having some kind of existential crisis? Right now is not the time to have one of those."',
+            'Ale: "Yeah, I’m fine. This all just feels kind of weird in a way. I’m just thinking about how real this all is. The Spanish didn’t just conquer a place, they wiped out an entire empire. And somehow this temple is still standing."',
+            'Carla: "Well, we better hope it stays standing until we get out of here."',
+            "Ale lets out a small breath, shaking off the weight of his thoughts.",
+            'Carla: "Alright, let’s keep moving before this place decides it doesn’t want us here anymore."',
+            'Ale: "Yeah. Let’s go."',
+            "Not a single word was said as Ale and Carla walked. Just eye contact which told each other to not say anything.",
+            "Then, Ale notices something on the ground, a rolled-up scroll, wedged between two loose stones. He hesitates before kneeling down and pulling it free, carefully unraveling the aged parchment.",
+            () => showScroll(),
+            'It reads: "I know there are two of you searching for the gold. You must understand this: two are required to enter the room where the treasure lies, but only one may leave with it. If you speak of this warning to the other, neither of you will leave this place alive."',
+            () => hideScroll(),
+            "Ale swallows hard, gripping the scroll a little tighter with his sweaty hands.",
+            "Their eyes widen as they take in the sight before them. A door at the end of the temple. Vines spiraling down the walls. Two handprints on each side of the door.",
+            'Ale turns to Carla with a nervousness in his voice. "So it’s true… the Treasure of the Llanganates is really real…" ',
+            'She places her hand on one of the glowing handprints.',
+            "Ale swallows hard, hesitating for a moment before pressing his hand onto the other handprint.",
+            "The ground trembles as the massive stone door begins to slide open.",
+            "A rush of stale air escapes from the chamber. Beyond it, the treasure room glows with golden light."
+        ];
+
+        function nextDialogue() {
+            if (typeof closedDoorDialogues[currentDialogue] === "function") {
+                closedDoorDialogues[currentDialogue]();
+            } else {
+                let dialogueText = closedDoorDialogues[currentDialogue];
+                document.getElementById('dialogue').textContent = dialogueText;
+                toggleCarlaImage(dialogueText);
+            }
+
+            if (currentDialogue < closedDoorDialogues.length - 1) {
+                currentDialogue++;
+            } else {
+                window.location.href = "treasureScene.html";
+            }
+        }
+
+        function showScroll() {
+            document.getElementById("scroll-image").style.display = "block";
+        }
+
+        function hideScroll() {
+            document.getElementById("scroll-image").style.display = "none";
+        }
+
+        function toggleCarlaImage(dialogue) {
+            let carlaImage = document.getElementById("carla-image");
+            if (dialogue.includes("Carla")) {
+                carlaImage.style.display = "block";
+            } else {
+                carlaImage.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('dialogue').textContent = closedDoorDialogues[currentDialogue];
+            toggleCarlaImage(closedDoorDialogues[currentDialogue]);
+        });
+    </script>
+</body>
+</html>
