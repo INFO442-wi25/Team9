@@ -1,0 +1,122 @@
+treasureScene.html - Tell or not tell Carla about scroll (die or live)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Room</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgroundLivingRoom">
+    <div class="dialogue-box">
+        <p id="dialogue"></p>
+        <button id="next-btn" onclick="nextDialogue()">Next</button>
+
+        <div id="question-container" style="display: none;">
+            <p id="question-text">Do you tell Carla about the scroll?</p>
+            <div class="button-group">
+                <button onclick="chooseOption('tell')">Tell Carla</button>
+                <button onclick="chooseOption('dontTell')">Keep it a Secret</button>
+            </div>
+        </div>
+    </div>
+
+    <img id="carla-image" src="/images/airportFriend.png" alt="Carla speaking" class="characterLeftSide" style="display: none;">
+
+    <script>
+        let currentDialogue = 0;
+        let choiceMade = false;
+        let dialogues = [
+            "The massive stone door fully slides open, revealing the long-lost treasure chamber.",
+            "Ale and Carla stare deeply inside the room, the golden light from the room illuminating their faces.",
+            "Piles of gold, ancient artifacts, and treasures stretch as far as the eye can see. Treasures that are dated hundreds of years ago",
+            "Ale: 'So this is the treasure that Rumiñawi and Atahualpa hid. The treasure that the Spaniards were after. The reason why they came here was for all of this.'",
+            "Silence fills the room. Awe, amazement, and disbelief can be felt in the air",
+            "Ale gathers his breath, glancing at Carla, remembering what the scroll said. He decides to make a decision..."
+        ];
+
+        let tellCarlaDialogues = [
+            'Ale: "So… here’s the situation."',
+            'Carla: "Oh great, there’s a situation. That’s exactly what I wanted to hear."',
+            'Ale: "Sooooo, I found a scroll earlier, and according to it… two people are required to enter the treasure room, but only one person can leave."',
+            'Carla: "Okay so, what? We get all the way here, after almost dying, like, multiple times, just for the temple to be like, ‘Oh Congrats! Now fight to the death!’"',
+            'Ale: "More like ‘choose who gets out,’ but… yeah, same idea. So I\'m telling you. I\'m not going in there if it means that we both don’t leave alive."',
+            'Carla: "You’re leaving the gold? Would your grandpa be fine with that? The reason you came here was because of your grandpa and the gold.”',
+            'Ale: "I think he’ll be okay with it. At the end of the day, I’ve made a friend who I’ve shared some good and not so good times with.."',
+            "Carla stands still for a moment, her expression unreadable as the golden light of the treasure shines against her face.", 
+            "Then, the air around them shifts, a sudden stillness, like the temple itself is holding its breath.",
+            "Ale steps back instinctively, his breath and pulse pounding, as he looks at what no longer appears to be Carla.",
+            "Carla's voice, once friendly and familiar, burns and deepens with intensity.",
+            'Carla (now Viracocha): "You have chosen well, Ale."',
+            "Ale stumbles back as he’s watching Carla transform from mortal to god-like figure.",
+            'Ale: "Erm… Carla…?"',
+            'Viracocha: "That was never my name. My name is Viracocha and I’m the god of wisdom and balance."',
+            'Viracocha: "For centuries, men have come here, thinking they could claim the treasure of the Llanganates. They crossed the paths that we went through in search of the gold."',
+            'Ale: "So… am I stuck here forever?"',
+            'Viracocha: "No, Ale. Throughout this trip, you have proven yourself as a wise and compassionate person, not driven by greed. As a reward, I offer you as much gold as you want to take to your grandpa and yourself. Go and be proud of what you’ve accomplished."',
+            () => redirectToEnd("goodEnding.html")
+        ];
+
+        function nextDialogue() {
+            if (!choiceMade) {
+                if (currentDialogue < dialogues.length - 1) {
+                    currentDialogue++;
+                    document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+                    toggleCarlaImage(dialogues[currentDialogue]);
+                } else {
+                    document.getElementById('dialogue').textContent = "";
+                    document.getElementById('next-btn').style.display = "none";
+                    document.getElementById('question-container').style.display = "block";
+                }
+            } else {
+                if (typeof tellCarlaDialogues[currentDialogue] === "function") {
+                    tellCarlaDialogues[currentDialogue]();
+                } else {
+                    document.getElementById('dialogue').textContent = tellCarlaDialogues[currentDialogue];
+                    toggleCarlaImage(tellCarlaDialogues[currentDialogue]);
+                }
+                if (currentDialogue < tellCarlaDialogues.length - 1) {
+                    currentDialogue++;
+                }
+            }
+        }
+
+        function chooseOption(option) {
+            document.getElementById('question-container').style.display = "none";
+            document.getElementById('next-btn').style.display = "block";
+            currentDialogue = 0;
+            choiceMade = true;
+
+            if (option === "tell") {
+                dialogues = tellCarlaDialogues;
+                document.getElementById('dialogue').textContent = tellCarlaDialogues[currentDialogue];
+                toggleCarlaImage(tellCarlaDialogues[currentDialogue]);
+            } else {
+                redirectToEnd("endScene.html");
+            }
+        }
+
+        function redirectToEnd(destination) {
+            window.location.href = destination;
+        }
+
+        function toggleCarlaImage(dialogue) {
+            let carlaImage = document.getElementById("carla-image");
+
+            if (dialogue.includes("Carla") || dialogue.includes("Viracocha")) {
+                carlaImage.style.display = "block";
+            } else {
+                carlaImage.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+            toggleCarlaImage(dialogues[currentDialogue]);
+        });
+    </script>
+</body>
+</html>
