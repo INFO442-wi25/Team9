@@ -23,10 +23,12 @@
     </div>
 
     <img id="carla-image" src="/images/airportFriend.png" alt="Carla speaking" class="characterLeftSide" style="display: none;">
+    <img id="urcaguary-image" src="/images/urcaguary.png" alt="Urcaguary speaking" class="characterLeftSide" style="display: none;">
 
     <script>
         let currentDialogue = 0;
         let choiceMade = false;
+
         let dialogues = [
             "Their eyes widen as they take in the sight before them. A door at the end of the temple. Vines spiraling down the walls. Two handprints on each side of the door.",
             'Ale turns to Carla with a nervousness in his voice. "So it’s true… the Treasure of the Llanganates is really real…" ',
@@ -42,18 +44,18 @@
             'Carla: "Okay so, what? We get all the way here, after almost dying, like, multiple times, just for the temple to be like, ‘Oh Congrats! Now fight to the death!’"',
             'Ale: "More like ‘choose who gets out,’ but… yeah, same idea. So I\'m telling you. I\'m not going in there if it means that we both don’t leave alive."',
             'Carla: "You’re leaving the gold? Would your grandpa be fine with that? The reason you came here was because of your grandpa and the gold.”',
-            'Ale: "I think he’ll be okay with it. At the end of the day, I’ve made a friend who I’ve shared some good and not so good times with.."',
+            'Ale: "I think he’ll be okay with it. At the end of the day, I’ve made a friend who I’ve shared some good and not so good times with."',
             "Carla stands still for a moment, her expression unreadable as the golden light of the treasure shines against her face.", 
             "Then, the air around them shifts, a sudden stillness, like the temple itself is holding its breath.",
             "Ale steps back instinctively, his breath and pulse pounding, as he looks at what no longer appears to be Carla.",
             "Carla's voice, once friendly and familiar, burns and deepens with intensity.",
-            'Carla (now Viracocha): "You have chosen well, Ale."',
-            "Ale stumbles back as he’s watching Carla transform from mortal to god-like figure.",
+            'Carla (now Urcaguary): "You have chosen well, Ale."',
+            "Ale stumbles back as he’s watching Carla transform from human to something of that of a crossover between a deer and a serpent.",
             'Ale: "Erm… Carla…?"',
-            'Viracocha: "That was never my name. My name is Viracocha and I’m the god of wisdom and balance."',
-            'Viracocha: "For centuries, men have come here, thinking they could claim the treasure of the Llanganates. They crossed the paths that we went through in search of the gold."',
+            'Urcaguary: "That was never my name. My name is Urcaguary and I’m the Incan god of jewels, metals, and other treasures found underground."',
+            'Urcaguary: "For centuries, men have come here, thinking they could claim the treasure of the Llanganates. They crossed the paths that we went through in search of the gold."',
             'Ale: "So… am I stuck here forever?"',
-            'Viracocha: "No, Ale. Throughout this trip, you have proven yourself as a wise and compassionate person, not driven by greed. As a reward, I offer you as much gold as you want to take to your grandpa and yourself. Go and be proud of what you’ve accomplished."',
+            'Urcaguary: "No, Ale. Throughout this trip, you have proven yourself as a wise and compassionate person, not driven by greed. As a reward, I offer you as much gold as you want to take to your grandpa and yourself. Go and be proud of what you’ve accomplished."',
             () => redirectToEnd("goodEnding.html")
         ];
 
@@ -61,8 +63,7 @@
             if (!choiceMade) {
                 if (currentDialogue < dialogues.length - 1) {
                     currentDialogue++;
-                    document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-                    toggleCarlaImage(dialogues[currentDialogue]);
+                    updateDialogue(dialogues[currentDialogue]);
                 } else {
                     document.getElementById('dialogue').textContent = "";
                     document.getElementById('next-btn').style.display = "none";
@@ -72,13 +73,17 @@
                 if (typeof tellCarlaDialogues[currentDialogue] === "function") {
                     tellCarlaDialogues[currentDialogue]();
                 } else {
-                    document.getElementById('dialogue').textContent = tellCarlaDialogues[currentDialogue];
-                    toggleCarlaImage(tellCarlaDialogues[currentDialogue]);
+                    updateDialogue(tellCarlaDialogues[currentDialogue]);
                 }
                 if (currentDialogue < tellCarlaDialogues.length - 1) {
                     currentDialogue++;
                 }
             }
+        }
+
+        function updateDialogue(text) {
+            document.getElementById('dialogue').textContent = text;
+            toggleCharacterImage(text);
         }
 
         function chooseOption(option) {
@@ -89,8 +94,7 @@
 
             if (option === "tell") {
                 dialogues = tellCarlaDialogues;
-                document.getElementById('dialogue').textContent = tellCarlaDialogues[currentDialogue];
-                toggleCarlaImage(tellCarlaDialogues[currentDialogue]);
+                updateDialogue(tellCarlaDialogues[currentDialogue]);
             } else {
                 redirectToEnd("endScene.html");
             }
@@ -100,19 +104,30 @@
             window.location.href = destination;
         }
 
-        function toggleCarlaImage(dialogue) {
+        function toggleCharacterImage(dialogue) {
             let carlaImage = document.getElementById("carla-image");
-
-            if (dialogue.includes("Carla") || dialogue.includes("Viracocha")) {
+            let urcaguaryImage = document.getElementById("urcaguary-image");
+            if (
+                dialogue.includes("Urcaguary") || 
+                dialogue.includes("no longer appears to be Carla") || 
+                dialogue.includes("Carla (now Urcaguary)") ||
+                dialogue.includes("burns and deepens with intensity") || 
+                dialogue.includes("transform from human") ||
+                dialogue.includes('Ale: "Erm… Carla…?"')
+            ) {
+                carlaImage.style.display = "none";
+                urcaguaryImage.style.display = "block";
+            } else if (dialogue.includes("Carla")) {
                 carlaImage.style.display = "block";
+                urcaguaryImage.style.display = "none";
             } else {
                 carlaImage.style.display = "none";
+                urcaguaryImage.style.display = "none";
             }
+            
         }
-
         document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById('dialogue').textContent = dialogues[currentDialogue];
-            toggleCarlaImage(dialogues[currentDialogue]);
+            updateDialogue(dialogues[currentDialogue]); 
         });
     </script>
 </body>
