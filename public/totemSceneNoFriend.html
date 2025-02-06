@@ -22,11 +22,13 @@
         </div>
     </div>
 
+    <img id="friendAirport-image" src="/images/airportFriend.png" alt="Friend at airport" class="characterLeftSide">
     <img id="deer-image" src="/images/deer.png" alt="brown deer" class="characterRightSide">
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
         document.getElementById('deer-image').style.display = 'none';
+        document.getElementById('friendAirport-image').style.display = 'none';
 
         let dialogues = [
             "How is he supposed to go about finding this? The only thing the villager told him was that its somewhere in the jungle and that he needs to respect the jungle. Which is sooo helpful.",
@@ -49,8 +51,6 @@
             "Food. They need more food. This deer could be more than enough meat for him and Carla. He glances down at the totem the deer led him to, then back up into its eyes.",
             "The words of the villager cross his mind. Respect the jungle, or it’ll turn on you.",
         ];
-
-        document.getElementById('friendAirport-image').style.display = 'none';
     
         let currentDialogue = 0;
     
