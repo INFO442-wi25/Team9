@@ -11,22 +11,22 @@
 <body class="backgroundBlack">
     <div class="center-box">
       <h1>You die!</h1>
-      <h2 class="death-message">You let greed take over and weren't true to your friend.</h2>
+      <h2 class="death-message">Be aware of your choices next time</h2>
       
       <div class="button-group">
         <button onclick="restartGame()">Restart</button>
-        <button onclick="goToCheckpoint()">Checkpoint</button>
       </div>
     </div>
 
     <script>
-      function restartGame() {
-        window.location.href = 'index.html';
-      }
+    
+        const hasFriend = sessionStorage.setItem('hasFriend', 'false');
+        const hasTotem = sessionStorage.setItem('hasTotem', 'false');
+        const hasResource = sessionStorage.setItem('hasResource', 'false');
 
-      function goToCheckpoint() {
-        window.location.href = 'templeScence.html';
-      }
+        function restartGame() {
+            window.location.href = 'index.html';
+        }
     </script>
   
 </body>

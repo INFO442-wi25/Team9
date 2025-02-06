@@ -20,7 +20,7 @@
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true';
         document.getElementById('professor-image').style.display = 'none';
-        document.getElementById('friendAirport-image').style.display = 'block';
+        document.getElementById('friendAirport-image').style.display = 'none';
 
         let dialoguesWithCarla = [
             "Ale: Meeting the professor sounds promising, let's start there.",
@@ -76,6 +76,10 @@
             if (currentDialogue < dialogues.length - 1) {
                 currentDialogue++;
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
+
+                if (hasFriend === true) {
+                    document.getElementById('friendAirport-image').style.display = 'block';
+                }
 
                 if (currentDialogue === 3) {
                     document.getElementById('professor-image').style.display = 'block';

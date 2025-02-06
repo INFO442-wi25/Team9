@@ -28,7 +28,7 @@
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
         document.getElementById('deer-image').style.display = 'none';
 
-        let dialoguesAlone = [
+        let dialogues = [
             "How is he supposed to go about finding this? The only thing the villager told him was that its somewhere in the jungle and that he needs to respect the jungle. Which is sooo helpful.",
             "Racking his brain, he realizes he really doesn't know what to do. Maybe he should just keep an eye out for anything unusual?",
             "Walking around aimlessly till he sees something suspicious doesn't seem that smart.",
@@ -52,7 +52,6 @@
 
         document.getElementById('friendAirport-image').style.display = 'none';
     
-        let dialogues = dialoguesAlone;
         let currentDialogue = 0;
     
         // Set the initial dialogue

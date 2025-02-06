@@ -26,6 +26,7 @@
 
     <script>
         let hasFriend = sessionStorage.getItem('hasFriend') === 'true'; // Check if Carla is with Ale
+        document.getElementById('friendAirport-image').style.display = 'none';
         
         let dialoguesWithCarla = [
             "They start their journey early in the moring. The city soon escapes them and their view is filled with green. The forest grows more dense as they walk.",
@@ -61,7 +62,7 @@
                 document.getElementById('dialogue').textContent = dialogues[currentDialogue];
 
                 // now show friend
-                if (currentDialogue === 0) {
+                if (hasFriend === true) {
                     document.getElementById('friendAirport-image').style.display = 'block';
                 }
             } else {
