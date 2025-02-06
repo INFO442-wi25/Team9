@@ -1,20 +1,8 @@
-# Team9
-Iris, Edlyn, Daisy, Yenmy, Paul, Edlyn, and Iris
-
-## Why we chose our specific project
-
-content 
-
-## Requirements on which to judge the project's completion
-
-content
-
-## Architecture
-
-content 
+# Journey of the Llanganates
+By: Iris, Edlyn, Daisy, Yenmy, and Paul
 
 ## Project
 
-Link to Figma design:
+Link to Figma Presentation:
 
-Link to final project: 
+Link to Story Game: https://llanganates-game.onrender.com 
